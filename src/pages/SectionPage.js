@@ -19,6 +19,7 @@ const SectionPage = () => {
         })
     }
 
+    //scroll to top of page at loading
     scrollIntoWindow(0,0);
 
     return (
