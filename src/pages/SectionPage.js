@@ -1,5 +1,4 @@
 import SectionCard from "../SectionCard";
-import { useParams } from "react-router-dom";
 import sections from "../SectionData";
 import Text from "../Text";
 import { scrollIntoWindow } from "../helperFunctions";

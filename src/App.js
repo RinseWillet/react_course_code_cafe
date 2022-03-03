@@ -39,6 +39,7 @@ class App extends React.Component {
                     favorite={section.favorite || false}
                     customSizes={section.customSizes || undefined}
                     link={"/sections/" + section.id || undefined}
+                    filter="grayscale"
                 />
             );
         });

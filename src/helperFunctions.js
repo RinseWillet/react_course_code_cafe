@@ -5,7 +5,7 @@ export const scrollIntoWindow = (x = 0, y = 0) => {
 
 // function for an unsafe login
 export const authenticate = (username, password) => {
-    if(username.toLowerCase() === "jeroen" && password.toLowerCase() === "react") {
+    if(username.toLowerCase() === "rinse" && password.toLowerCase() === "cool") {
         return true;
     } else {
         return false;
