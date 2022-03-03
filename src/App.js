@@ -20,7 +20,7 @@ import sections from "./SectionData";
 import "./App.css";
 
 class App extends React.Component {
-    state = { sections: "", lovedButtonPressed: false, loggedIn: true };
+    state = { sections: "", lovedButtonPressed: false, loggedIn: false };
 
     filteredLoved = (state) => {
         this.setState({ lovedButtonPressed: state });
@@ -100,9 +100,7 @@ class App extends React.Component {
         }
         return (
             <Switch>
-                <Route path="/sections/:sectionId">
-                    <SectionPage />
-                </Route>
+                <Route path="/sections/:sectionId" component={SectionPage}/>
                 <Route path="/">
                     {main}
                 </Route>
