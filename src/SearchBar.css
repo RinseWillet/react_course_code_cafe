@@ -4,9 +4,9 @@
 }
 
 .searchSection__label{
- display: block;
- font-size: 350%;
- padding-bottom: 2rem;
+    display: block;
+    font-size: 350%;
+    padding-bottom: 2rem;
 }
 
 .searchSection__label:hover{
@@ -43,7 +43,6 @@
     .searchSection__searchBar{
         font-size: 180%;
     }
-
 }
 
 /* until 800 px */
@@ -59,5 +58,4 @@
     .searchSection__searchBar{
         font-size: 100%;
     }
-
 }

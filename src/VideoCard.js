@@ -1,10 +1,10 @@
 import "./VideoCard.css";
 
-const VideoCard = (props) => {
+const VideoCard = ({video}) => {
     return(
         <li className="mediaSection__videoItem">
             <video controls>
-                <source src={props.video} type="video/mp4" />
+                <source src={video} type="video/mp4" />
                 Sorry, de video kon niet worden afgespeeld
             </video>
         </li>

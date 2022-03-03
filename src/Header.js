@@ -1,9 +1,9 @@
 import "./Header.css";
 
-const Header = (props) => {
+const Header = ({text}) => {
     return (
         <header className="mediaSection__header">
-            <h2 className="mediaSection__heading">{props.text || "Placeholder Header Text"}</h2>
+            <h2 className="mediaSection__heading">{text || "Placeholder Header Text"}</h2>
         </header>
     );
 }

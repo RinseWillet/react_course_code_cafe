@@ -26,7 +26,7 @@ class SearchBar extends React.Component {
                         </span>
                         zoek je iets?
                     </label>                  
-                    <input className="searchSection__searchBar" value={this.state.searchTerm} onChange={this.onChange} type="text" id="searchBar" />
+                    <input placeholder={this.props.searchBarPlaceholder || "Zoek hier je sectie"} className="searchSection__searchBar" value={this.state.searchTerm} onChange={this.onChange} type="text" id="searchBar" />
                     <span className="searchSection__searchLogo" onClick={this.onSubmit}></span>
                 </form>
             </section>

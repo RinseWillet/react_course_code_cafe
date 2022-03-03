@@ -1,6 +1,6 @@
 //react
 import React from "react";
-import { Route, Redirect, Switch } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 
 //pagina's
 import MainPage from "./pages/MainPage";
@@ -11,8 +11,7 @@ import SectionPage from "./pages/SectionPage";
 import MediaSection from "./MediaSection";
 
 //helper functies
-import { scrollIntoWindow } from "./helperFunctions";
-import { authenticate } from "./helperFunctions";
+import { scrollIntoWindow, authenticate } from "./helperFunctions";
 
 //data
 import sections from "./SectionData";
@@ -96,6 +95,7 @@ class App extends React.Component {
                 name="Rinse"
                 onSearch={this.onSearch}
                 sections={this.state.sections}
+                searchBarPlaceholder="Probeer Forest of Beach"
             />
         }
         return (

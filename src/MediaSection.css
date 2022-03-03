@@ -38,8 +38,3 @@
         max-height: 1000rem;
     }
 }
-
-/* until 800 px */
-@media (max-width: 46.875rem) {
-    
-}
