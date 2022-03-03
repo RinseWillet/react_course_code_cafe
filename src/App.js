@@ -100,9 +100,7 @@ class App extends React.Component {
         }
         return (
             <Switch>
-                <Route path="/sections/:sectionId">
-                    <SectionPage />
-                </Route>
+                <Route path="/sections/:sectionId" component={SectionPage}/>
                 <Route path="/">
                     {main}
                 </Route>

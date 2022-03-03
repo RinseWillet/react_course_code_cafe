@@ -4,9 +4,10 @@ import sections from "../SectionData";
 import Text from "../Text";
 import { scrollIntoWindow } from "../helperFunctions";
 
-const SectionPage = () => {
+const SectionPage = (props) => {
 
-    let { sectionId } = useParams();
+    let sectionId = props.match.params.sectionId;
+  
     let textToBeRendered = "";
 
     let externalDataSection = sections.filter(section => {
