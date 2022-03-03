@@ -20,7 +20,7 @@ import sections from "./SectionData";
 import "./App.css";
 
 class App extends React.Component {
-    state = { sections: "", lovedButtonPressed: false, loggedIn: true };
+    state = { sections: "", lovedButtonPressed: false, loggedIn: false };
 
     filteredLoved = (state) => {
         this.setState({ lovedButtonPressed: state });
