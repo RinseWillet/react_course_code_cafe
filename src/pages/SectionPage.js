@@ -1,3 +1,4 @@
+import React from 'react';
 import SectionCard from "../SectionCard";
 import sections from "../SectionData";
 import Text from "../Text";

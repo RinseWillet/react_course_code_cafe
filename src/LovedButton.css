@@ -43,6 +43,10 @@
     cursor: pointer;
 }
 
+.lovedButton[data-filter="grayscale"], .lovedButton[data-filter="grayscale"]::before, .lovedButton[data-filter="grayscale"]::after {
+    filter: grayscale(100%);
+}
+
 /* until 800 px */
 @media (max-width: 46.875rem) {
     .lovedButton{     

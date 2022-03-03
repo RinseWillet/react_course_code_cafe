@@ -1,16 +1,18 @@
+import React from 'react';
 import Header from "./Header";
 import MediaCard from "./MediaCard";
 import VideoCard from "./VideoCard";
 
 import "./MediaSection.css";
 
-const MediaSection = ({pictures, link, customSizes, type, videos, headerText, extraClass}) => {
+const MediaSection = ({pictures, link, customSizes, type, videos, headerText, extraClass, filter}) => {
 
     let data = "";
     if (pictures && type === "picture") {
         data = pictures.map(picture => {
             return (
                 <MediaCard
+                    filter={filter}
                     link={link}
                     customSizes={customSizes}
                     pictures={picture}

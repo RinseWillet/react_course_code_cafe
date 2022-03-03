@@ -18,9 +18,10 @@ import sections from "./SectionData";
 
 //styling
 import "./App.css";
+import FilterContext from "./FilterContext";
 
 class App extends React.Component {
-    state = { sections: "", lovedButtonPressed: false, loggedIn: false };
+    state = { sections: "", lovedButtonPressed: false, loggedIn: false, filter: "" };
 
     filteredLoved = (state) => {
         this.setState({ lovedButtonPressed: state });
@@ -39,7 +40,6 @@ class App extends React.Component {
                     favorite={section.favorite || false}
                     customSizes={section.customSizes || undefined}
                     link={"/sections/" + section.id || undefined}
-                    filter="grayscale"
                 />
             );
         });
@@ -97,15 +97,18 @@ class App extends React.Component {
                 onSearch={this.onSearch}
                 sections={this.state.sections}
                 searchBarPlaceholder="Probeer Forest of Beach"
+                onGrayScaleButtonClicked = { () => this.state.filter === "grayscale" ? this.setState({filter: ""}) : this.setState({filter: "grayscale"})}
             />
         }
         return (
-            <Switch>
-                <Route path="/sections/:sectionId" component={SectionPage}/>
-                <Route path="/">
-                    {main}
-                </Route>
-            </Switch>
+            <FilterContext.Provider value={this.state.filter}>
+                <Switch>
+                    <Route path="/sections/:sectionId" component={SectionPage} />
+                    <Route path="/">
+                        {main}
+                    </Route>
+                </Switch>
+            </FilterContext.Provider>
         );
     }
 }

@@ -1,3 +1,4 @@
+import React from 'react';
 import LoginCard from "../LoginCard";
 
 const loginPage = ({ heading, firstLabel, secondLabel, onLogin }) => {

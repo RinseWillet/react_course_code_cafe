@@ -1,12 +1,18 @@
+import React from 'react';
+import FilterContext from './FilterContext';
 import "./LovedButton.css"
 
-const LovedButton = (props) => {
+class LovedButton extends React.Component {
 
-    const press = (event) => {
-        props.filteredLoved(!props.lovedButtonPressed);
+    press = (event) => {
+        this.props.filteredLoved(!this.props.lovedButtonPressed);
     }
 
-    return <button onClick={press} className="lovedButton" data-pressed={props.lovedButtonPressed}></button>
+    render() {
+        return <button data-filter={this.context} onClick={this.press} className="lovedButton" data-pressed={this.props.lovedButtonPressed}></button>
+    }
 }
+
+LovedButton.contextType=FilterContext;
 
 export default LovedButton;
