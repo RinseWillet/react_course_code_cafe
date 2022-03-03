@@ -10,6 +10,7 @@ const MediaSection = (props) => {
         data = props.pictures.map(picture => {
             return (
                 <MediaCard
+                    link={props.link}
                     customSizes={props.customSizes}
                     pictures={picture}
                     key={picture + Math.random()}              
