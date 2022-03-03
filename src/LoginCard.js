@@ -27,11 +27,11 @@ class LoginCard extends React.Component{
                     <form onSubmit={this.login}>
                         <div className="loginCard__wrapper">
                             <label htmlFor="username" className="loginCard__label"> {this.props.firstLabel || "Placeholder label"} </label>
-                            <input onChange={this.setUsername} id="username" className="loginCard__input" type="text" />
+                            <input value={this.state.username} onChange={this.setUsername} id="username" className="loginCard__input" type="text" />
                         </div>
                         <div className="loginCard__wrapper">
                             <label htmlFor="password" className="loginCard__label">{this.props.secondLabel || "Placeholder label"}</label>
-                            <input onChange={this.setPassword} id="password" className="loginCard__input" type="password" />
+                            <input value={this.state.password} onChange={this.setPassword} id="password" className="loginCard__input" type="password" />
                         </div>
                         <button className="loginCard__button loginCard__button--3D"></button>
                     </form>

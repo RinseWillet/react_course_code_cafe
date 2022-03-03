@@ -4,30 +4,32 @@ import VideoCard from "./VideoCard";
 
 import "./MediaSection.css";
 
-const MediaSection = (props) => {
-    let data = "";     
-    if(props.pictures && props.type === "picture"){
-        data = props.pictures.map(picture => {
+const MediaSection = ({pictures, link, customSizes, type, videos, headerText, extraClass}) => {
+
+    let data = "";
+    if (pictures && type === "picture") {
+        data = pictures.map(picture => {
             return (
                 <MediaCard
-                    customSizes={props.customSizes}
+                    link={link}
+                    customSizes={customSizes}
                     pictures={picture}
-                    key={picture + Math.random()}              
+                    key={picture + Math.random()}
                 />
             );
         });
     }
-    if(props.videos && props.type === "video"){
-        data = props.videos.map(video => {
+    if (videos && type === "video") {
+        data = videos.map(video => {
             return <VideoCard video={video} />
         });
     }
-    
+
     return (
         <section className="mediaSection">
-            <Header text={props.headerText || "Geen Header"} />
-            <ul className={"mediaSection__list " + props.extraClass || ""}>
-                {data}                
+            <Header text={headerText || "Geen Header"} />
+            <ul className={"mediaSection__list " + extraClass || ""}>
+                {data}
             </ul>
         </section>
     );

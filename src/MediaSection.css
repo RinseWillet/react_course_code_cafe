@@ -21,7 +21,7 @@
 .mediaSection__list--bigGrid{
     grid-template-columns: repeat(6,minmax(0,1fr));
     grid-template-rows: repeat(6,minmax(0,1fr));
-    max-height: 150rem;
+    max-height: 500rem;
 }
 
 /* until 1200 px */
@@ -34,9 +34,7 @@
         grid-column-gap: 1rem;
         max-height: 130rem;        
     }    
-}
-
-/* until 800 px */
-@media (max-width: 46.875rem) {
-    
+    .mediaSection__list--bigGrid{
+        max-height: 1000rem;
+    }
 }

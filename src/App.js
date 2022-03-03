@@ -1,26 +1,26 @@
 //react
 import React from "react";
-import { Route, Redirect, Switch } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 
 //pagina's
 import MainPage from "./pages/MainPage";
-import LoginPage from "./pages/loginPage";
+import LoginPage from "./pages/LoginPage";
+import SectionPage from "./pages/SectionPage";
 
 //componenten
 import MediaSection from "./MediaSection";
 
 //helper functies
-import { scrollIntoWindow } from "./helperFunctions";
-import { authenticate } from "./helperFunctions";
+import { scrollIntoWindow, authenticate } from "./helperFunctions";
 
 //data
-import sections from "./sectionData";
+import sections from "./SectionData";
 
 //styling
 import "./App.css";
 
 class App extends React.Component {
-    state = { sections: "", lovedButtonPressed: false, loggedIn: false };
+    state = { sections: "", lovedButtonPressed: false, loggedIn: true };
 
     filteredLoved = (state) => {
         this.setState({ lovedButtonPressed: state });
@@ -38,6 +38,7 @@ class App extends React.Component {
                     key={section.id}
                     favorite={section.favorite || false}
                     customSizes={section.customSizes || undefined}
+                    link={"/sections/" + section.id || undefined}
                 />
             );
         });
@@ -46,7 +47,7 @@ class App extends React.Component {
     }
 
     onLogin = (username, password) => {
-       this.setState({loggedIn: authenticate(username, password)});
+        this.setState({ loggedIn: authenticate(username, password) });
     }
 
     onSearch = (searchTerm = "") => {
@@ -63,6 +64,7 @@ class App extends React.Component {
                     key={section.id}
                     favorite={section.favorite || false}
                     customSizes={section.customSizes || undefined}
+                    link={"/sections/" + section.id || undefined}
                 />
             );
         });
@@ -93,10 +95,14 @@ class App extends React.Component {
                 name="Rinse"
                 onSearch={this.onSearch}
                 sections={this.state.sections}
+                searchBarPlaceholder="Probeer Forest of Beach"
             />
         }
         return (
-            <Switch>              
+            <Switch>
+                <Route path="/sections/:sectionId">
+                    <SectionPage />
+                </Route>
                 <Route path="/">
                     {main}
                 </Route>
