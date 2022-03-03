@@ -1,0 +1,25 @@
+.mediaSection__header{
+    margin-bottom: 2rem;    
+}
+
+.mediaSection__heading{
+    font-size: 350%;
+    border-bottom: 0.5rem solid var(--accent-color);
+    padding: 2rem;
+    padding-left: 0;
+    font-weight: 400;
+}
+
+/* until 1200 px */
+@media (max-width: 75rem) {
+    .mediaSection__heading{
+        font-size: 200%;        
+    }
+}
+
+/* until 800 px */
+@media (max-width: 46.875rem) {
+    .mediaSection__heading{
+        font-size: 150%;        
+    }
+}
