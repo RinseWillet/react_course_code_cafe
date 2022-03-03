@@ -1,0 +1,36 @@
+.mediaSection__listItem {
+    grid-column: span 3;
+    grid-row: span 6;
+}
+
+.mediaSection__listItem figure {
+    width: 100%;
+    height: 100%;
+}
+
+.mediaSection__listItem figure img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* until 1200 px */
+@media (max-width: 75rem) {
+    .mediaSection__listItem {
+        grid-column: span 4;
+        grid-row: span 3;
+    }
+
+    .mediaSection__list--bigGrid > .mediaSection__listItem {
+        grid-column: span 6;
+        grid-row: span 12;
+    }
+}
+
+/* until 800 px */
+@media (max-width: 46.875rem) {
+    .mediaSection__listItem {
+        grid-column: span 6;
+        grid-row: span 3;
+    }
+}
