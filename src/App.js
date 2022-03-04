@@ -2,6 +2,9 @@
 import React from "react";
 import { Route, Switch } from "react-router-dom";
 
+//React-Redux
+import {connect} from "react-redux";
+
 //pagina's
 import MainPage from "./pages/MainPage";
 import LoginPage from "./pages/LoginPage";
@@ -21,11 +24,10 @@ import sections from "./SectionData";
 import "./App.css";
 
 class App extends React.Component {
-    state = { sections: "", lovedButtonPressed: false, loggedIn: false, filter: "" };
+    state = { sections: "", loggedIn: false, filter: "" };
 
-    filteredLoved = (state) => {
-        this.setState({ lovedButtonPressed: state });
-        if (state === false) { this.onSearch(); return }
+    filteredLoved = () => {
+        if (!this.props.lovedButtonPressed === false) { this.onSearch(); return }
         let filteredSections = sections.filter(section => {
             return section.favorite === true;
         }).map(section => {
@@ -92,7 +94,7 @@ class App extends React.Component {
         if (this.state.loggedIn === true) {
             main = <MainPage
                 filteredLoved={this.filteredLoved}
-                lovedButtonPressed={this.state.lovedButtonPressed}
+                lovedButtonPressed={this.props.lovedButtonPressed}
                 name="Rinse"
                 onSearch={this.onSearch}
                 sections={this.state.sections}
@@ -113,4 +115,10 @@ class App extends React.Component {
     }
 }
 
-export default App;
+export const mapStateToProps = (state) => {
+    return {
+        lovedButtonPressed: state
+    }
+}
+
+export default connect(mapStateToProps, {})(App);
