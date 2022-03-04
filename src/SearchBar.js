@@ -1,5 +1,9 @@
+//React
 import React from "react";
+
+//style
 import "./SearchBar.css";
+import "./Animations.css";
 
 class SearchBar extends React.Component {
 
@@ -17,7 +21,7 @@ class SearchBar extends React.Component {
 
     render() {
         return (
-            <section data-lovedButtonPressed={this.props.lovedButtonPressed} className="searchSection">
+            <section data-lovedbuttonpressed={this.props.lovedbuttonpressed} className="searchSection a-comeUp">
                 <form onSubmit={this.onSubmit}>
                     <label htmlFor="searchBar" className="searchSection__label" >
                         Hallo

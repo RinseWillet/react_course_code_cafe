@@ -1,5 +1,9 @@
+//React
 import React from "react";
+
+//style
 import "./LoginCard.css";
+import "./Animations.css";
 
 class LoginCard extends React.Component{
     state = {username: "", password: ""};
@@ -19,7 +23,7 @@ class LoginCard extends React.Component{
 
     render(){
         return(
-            <article className="loginCard">
+            <article className="loginCard a-comeUp">
                 <header className="loginCard__header">
                     <h2 className="loginCard__heading"> {this.props.heading || "Placeholder heading"} </h2>
                 </header>

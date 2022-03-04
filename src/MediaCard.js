@@ -1,12 +1,17 @@
+//React
 import React, {useContext} from 'react';
+
+//componenten
 import FilterContext from './FilterContext';
-import "./MediaCard.css";
 import MediaCardWithLink from './MediaCardWithLink';
+
+//style
+import "./MediaCard.css";
 
 const MediaCard = (props) => {
 
     const filter = useContext(FilterContext)
-  
+   
         if (props.link) {
             return (
                <MediaCardWithLink link={props.link} pictures={props.pictures} customSizes={props.customSizes}/>
@@ -24,8 +29,7 @@ const MediaCard = (props) => {
                         />
                 </figure>
             </li>
-        );
-    
+        );    
 }
 
 export default MediaCard;

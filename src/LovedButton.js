@@ -1,5 +1,10 @@
+//React
 import React, {useContext} from 'react';
+
+//componenten
 import FilterContext from './FilterContext';
+
+//style
 import "./LovedButton.css"
 
 const LovedButton = (props) => {

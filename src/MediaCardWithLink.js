@@ -1,5 +1,8 @@
+//React
 import React, {useContext} from "react";
 import { Link } from "react-router-dom";
+
+//componenten
 import FilterContext from "./FilterContext";
 
 const MediaCardWithLink = (props) => {

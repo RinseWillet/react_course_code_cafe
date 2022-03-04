@@ -1,4 +1,7 @@
+//React
 import React from 'react';
+
+//componenten
 import GrayScaleButton from "../GrayScaleButton";
 import LovedButton from "../LovedButton";
 import SearchBar from "../SearchBar";

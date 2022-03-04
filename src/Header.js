@@ -1,4 +1,7 @@
+//React
 import React from 'react';
+
+//style
 import "./Header.css";
 
 const Header = ({text}) => {

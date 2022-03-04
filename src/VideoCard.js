@@ -1,4 +1,7 @@
+//React
 import React from 'react';
+
+//style
 import "./VideoCard.css";
 
 const VideoCard = ({video}) => {

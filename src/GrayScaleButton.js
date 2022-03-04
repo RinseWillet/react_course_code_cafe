@@ -1,4 +1,7 @@
+//React
 import React from "react";
+
+//style
 import "./GrayScaleButton.css";
 
 const GrayScaleButton = (props) => {

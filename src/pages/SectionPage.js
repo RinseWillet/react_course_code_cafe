@@ -1,7 +1,12 @@
+//React
 import React from 'react';
+
+//componenten
 import SectionCard from "../SectionCard";
 import sections from "../SectionData";
 import Text from "../Text";
+
+//helper functies
 import { scrollIntoWindow } from "../helperFunctions";
 
 const SectionPage = (props) => {

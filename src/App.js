@@ -1,4 +1,4 @@
-//react
+//React
 import React from "react";
 import { Route, Switch } from "react-router-dom";
 
@@ -9,6 +9,7 @@ import SectionPage from "./pages/SectionPage";
 
 //componenten
 import MediaSection from "./MediaSection";
+import FilterContext from "./FilterContext";
 
 //helper functies
 import { scrollIntoWindow, authenticate } from "./helperFunctions";
@@ -18,7 +19,6 @@ import sections from "./SectionData";
 
 //styling
 import "./App.css";
-import FilterContext from "./FilterContext";
 
 class App extends React.Component {
     state = { sections: "", lovedButtonPressed: false, loggedIn: false, filter: "" };

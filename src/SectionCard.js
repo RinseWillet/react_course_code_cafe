@@ -1,7 +1,12 @@
+//React
 import React from 'react';
 import { Link, Redirect } from "react-router-dom";
+
+//componenten
 import Header from "./Header";
 import MediaSection from "./MediaSection";
+
+//style
 import "./SectionCard.css";
 
 const SectionCard = ({ section, children }) => {

@@ -1,3 +1,5 @@
+//dit is de data, verpakt als json object in const sections
+
 const sections = [
     {
         "id": "1",
