@@ -15,20 +15,20 @@ import MediaSection from "./MediaSection";
 import FilterContext from "./FilterContext";
 
 //helper functies
-import { scrollIntoWindow, authenticate } from "./helperFunctions";
+import { scrollIntoWindow } from "./helperFunctions";
 
 //data
-import sections from "./SectionData";
+import sectionData from "./sectionData";
 
 //styling
 import "./App.css";
 
 class App extends React.Component {
-    state = { sections: "", loggedIn: false, filter: "" };
+    state = { filter: "" };
 
     filteredLoved = () => {
         if (!this.props.lovedButtonPressed === false) { this.onSearch(); return }
-        let filteredSections = sections.filter(section => {
+        let filteredSections = sectionData.filter(section => {
             return section.favorite === true;
         }).map(section => {
             return (
@@ -45,16 +45,11 @@ class App extends React.Component {
                 />
             );
         });
-
-        this.setState({ sections: filteredSections })
-    }
-
-    onLogin = (username, password) => {
-        this.setState({ loggedIn: authenticate(username, password) });
+        this.props.updateSections(filteredSections);        
     }
 
     onSearch = (searchTerm = "") => {
-        let filteredSections = sections.filter(section => {
+        let filteredSections = sectionData.filter(section => {
             return section.headerText.toLowerCase().search(searchTerm.toLowerCase()) !== -1;
         }).map(section => {
             return (
@@ -71,7 +66,7 @@ class App extends React.Component {
                 />
             );
         });
-        this.setState({ sections: filteredSections });
+        this.props.updateSections(filteredSections);  
     }
 
     componentDidMount() {
@@ -87,23 +82,21 @@ class App extends React.Component {
             heading="MyFlix Login"
             firstLabel="Gebruikersnaam"
             secondLabel="Wachtwoord"
-            onLogin={this.onLogin}
-
         />
 
-        if (this.state.loggedIn === true) {
+        if (this.props.loggedIn === true) {
             main = <MainPage
                 filteredLoved={this.filteredLoved}
                 lovedButtonPressed={this.props.lovedButtonPressed}
                 name="Rinse"
                 onSearch={this.onSearch}
-                sections={this.state.sections}
+                sections={this.props.sections}
                 searchBarPlaceholder="Probeer Forest of Beach"
                 onGrayScaleButtonClicked = { () => this.state.filter === "grayscale" ? this.setState({filter: ""}) : this.setState({filter: "grayscale"})}
             />
         }
         return (
-            <FilterContext.Provider value={this.state.filter}>
+            <FilterContext.Provider value={this.props.filter}>
                 <Switch>
                     <Route path="/sections/:sectionId" component={SectionPage} />
                     <Route path="/">
@@ -117,8 +110,17 @@ class App extends React.Component {
 
 export const mapStateToProps = (state) => {
     return {
-        lovedButtonPressed: state
+        lovedButtonPressed: state.lovedButtonPressed,
+        loggedIn: state.loggedIn,
+        sections: state.sections,
+        filter: state.filterContext
     }
 }
 
-export default connect(mapStateToProps, {})(App);
+export const mapDispatchToProps = (dispatch) => {
+    return {
+        updateSections: (filteredSections) => { dispatch({type: "SECTIONS", payload: filteredSections}) }
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);

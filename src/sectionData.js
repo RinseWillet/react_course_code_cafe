@@ -1,6 +1,6 @@
 //dit is de data, verpakt als json object in const sections
 
-const sections = [
+const sectionData = [
     {
         "id": "1",
         "headerText": "Motorcycles",
@@ -75,4 +75,4 @@ const sections = [
     }
 ];
 
-export default sections;
+export default sectionData;

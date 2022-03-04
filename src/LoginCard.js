@@ -1,6 +1,12 @@
 //React
 import React from "react";
 
+// React-Redux
+import { connect } from "react-redux";
+
+//helper functies
+import { authenticate } from "./helperFunctions";
+
 //style
 import "./LoginCard.css";
 import "./Animations.css";
@@ -18,7 +24,7 @@ class LoginCard extends React.Component{
 
     login = (event) => {
         event.preventDefault();
-        this.props.onLogin(this.state.username, this.state.password);
+        this.props.login(authenticate(this.state.username, this.state.password));       
     }
 
     render(){
@@ -45,6 +51,14 @@ class LoginCard extends React.Component{
     }
 }
 
+export const mapStateToProps = (state) => {   
+    return state;
+}
 
+export const mapDispatchToProps = (dispatch) => {
+    return {
+        login: (loggedIn) => {dispatch({type: "LOGGING_IN", payload: loggedIn})}
+    }
+}
 
-export default LoginCard;
+export default connect(mapStateToProps, mapDispatchToProps)(LoginCard);

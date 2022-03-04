@@ -3,7 +3,7 @@ import React from 'react';
 
 //componenten
 import SectionCard from "../SectionCard";
-import sections from "../SectionData";
+import sectionData from "../sectionData";
 import Text from "../Text";
 
 //helper functies
@@ -15,7 +15,7 @@ const SectionPage = (props) => {
   
     let textToBeRendered = "";
 
-    let externalDataSection = sections.filter(section => {
+    let externalDataSection = sectionData.filter(section => {
         return section.id === sectionId;
     })
 

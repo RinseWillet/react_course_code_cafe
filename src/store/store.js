@@ -2,6 +2,10 @@
 import { combineReducers, createStore } from "redux";
 
 //reducers
-import  {lovedButtonPressed} from "../reducers";
+import { lovedButtonPressed, loggedIn, sections, filterContext } from "../reducers";
 
-export const store = createStore(lovedButtonPressed);
+export const store = createStore(
+    combineReducers({
+        lovedButtonPressed, loggedIn, sections, filterContext
+    })
+);

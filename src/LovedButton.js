@@ -12,7 +12,6 @@ import "./LovedButton.css"
 
 const LovedButton = (props) => {
 
-    console.log(props.lovedButtonPressed);
     const filter = useContext(FilterContext);
 
     const press = (event) => {
@@ -26,7 +25,7 @@ const LovedButton = (props) => {
 
 export const mapStateToProps = (state) => {
     return {
-        lovedButtonPressed: state
+        lovedButtonPressed: state.lovedButtonPressed
     }
 }
 
