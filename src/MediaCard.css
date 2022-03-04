@@ -14,6 +14,16 @@
     object-fit: cover;
 }
 
+<<<<<<< HEAD
+=======
+.mediaSection__listItem figure img[data-filter="grayscale"] {
+    filter: grayscale(100%);
+}
+
+.mediaSection__listItem figure img[data-filter="hue"] {
+    filter: hue-rotate(180deg);
+}
+>>>>>>> 6a5d77c33f0dff4c9ebee51ad9d75277fae224aa
 /* until 1200 px */
 @media (max-width: 75rem) {
     .mediaSection__listItem {

@@ -1,0 +1,14 @@
+.grayScaleButton{
+    font-size: 140%;
+    border-radius: 50%;
+    background-color: var(--accent-color);
+    border: none;
+    outline: none;
+    width: 10rem;
+    height: 10rem;
+    color: var(--font-color);
+}
+
+.grayScaleButton:hover{
+    cursor:pointer;
+}
