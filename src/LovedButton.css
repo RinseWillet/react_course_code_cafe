@@ -9,10 +9,7 @@
     border: none;
     z-index: 1;
     transform: rotate(45deg);
-<<<<<<< HEAD
-=======
     transition: 0.6s;
->>>>>>> 6a5d77c33f0dff4c9ebee51ad9d75277fae224aa
 }
 
 .lovedButton::before{
@@ -25,10 +22,7 @@
     background-color: white;
     transform: translateX(-50%);
     border-radius: 50%;
-<<<<<<< HEAD
-=======
     transition: 0.6s;
->>>>>>> 6a5d77c33f0dff4c9ebee51ad9d75277fae224aa
 }
 
 .lovedButton::after{
@@ -41,10 +35,7 @@
     background-color: white;
     transform: translateY(-50%);
     border-radius: 50%;
-<<<<<<< HEAD
-=======
     transition: 0.6s;
->>>>>>> 6a5d77c33f0dff4c9ebee51ad9d75277fae224aa
 }
 
 .lovedButton[data-pressed="true"], .lovedButton[data-pressed="true"]::before, .lovedButton[data-pressed="true"]::after{ 
@@ -55,8 +46,6 @@
     cursor: pointer;
 }
 
-<<<<<<< HEAD
-=======
 .lovedButton:active{
     transform: scale(0.8) rotate(45deg);
 }
@@ -67,7 +56,6 @@
 
 
 
->>>>>>> 6a5d77c33f0dff4c9ebee51ad9d75277fae224aa
 /* until 800 px */
 @media (max-width: 46.875rem) {
     .lovedButton{     

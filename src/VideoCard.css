@@ -12,10 +12,7 @@
     outline: 0.5rem solid var(--accent-color);
 }
 
-<<<<<<< HEAD
-=======
 /* until 1200 px */
->>>>>>> 6a5d77c33f0dff4c9ebee51ad9d75277fae224aa
 @media (max-width: 75rem) {
     .mediaSection__videoItem{
         grid-column: span 12;

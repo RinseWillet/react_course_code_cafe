@@ -21,11 +21,7 @@
 .mediaSection__list--bigGrid{
     grid-template-columns: repeat(6,minmax(0,1fr));
     grid-template-rows: repeat(6,minmax(0,1fr));
-<<<<<<< HEAD
-    max-height: 150rem;
-=======
     max-height: 500rem;
->>>>>>> 6a5d77c33f0dff4c9ebee51ad9d75277fae224aa
 }
 
 /* until 1200 px */
@@ -38,15 +34,7 @@
         grid-column-gap: 1rem;
         max-height: 130rem;        
     }    
-<<<<<<< HEAD
-}
-
-/* until 800 px */
-@media (max-width: 46.875rem) {
-    
-=======
     .mediaSection__list--bigGrid{
         max-height: 1000rem;
     }
->>>>>>> 6a5d77c33f0dff4c9ebee51ad9d75277fae224aa
 }
