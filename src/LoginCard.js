@@ -16,20 +16,25 @@ const LoginCard = (props) => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
 
+    const onSubmit = (event) => {
+        event.preventDefault();
+        props.login(authenticate(username, password));
+    }
+
     return (
         <article className="loginCard a-comeUp">
             <header className="loginCard__header">
                 <h2 className="loginCard__heading"> {props.heading || "Placeholder heading"} </h2>
             </header>
             <section className="loginCard__body">
-                <form onSubmit={(event) => event.preventDefault(), props.login(authenticate(username, password)) }>
+                <form onSubmit={ (event) => onSubmit(event) }>
                     <div className="loginCard__wrapper">
                         <label htmlFor="username" className="loginCard__label"> {props.firstLabel || "Placeholder label"} </label>
-                        <input value={username} onChange={ (event) => {setUsername(event.target.value)} } id="username" className="loginCard__input" type="text" />
+                        <input value={username} onChange={(event) => { setUsername(event.target.value) }} id="username" className="loginCard__input" type="text" />
                     </div>
                     <div className="loginCard__wrapper">
                         <label htmlFor="password" className="loginCard__label">{props.secondLabel || "Placeholder label"}</label>
-                        <input value={password} onChange={ (event) => {setPassword(event.target.value)} } id="password" className="loginCard__input" type="password" />
+                        <input value={password} onChange={(event) => { setPassword(event.target.value) }} id="password" className="loginCard__input" type="password" />
                     </div>
                     <button className="loginCard__button loginCard__button--3D"></button>
                 </form>

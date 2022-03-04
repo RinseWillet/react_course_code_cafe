@@ -30,7 +30,7 @@
     border: 0.5rem solid var(--accent-color);
 }
 
-.searchSection[data-lovedButtonPressed="true"]{
+.searchSection[data-lovedbuttonpressed="true"]{
     display:none;
 }
 

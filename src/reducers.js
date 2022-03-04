@@ -1,10 +1,13 @@
 //data van de plaatjes etc.
 import sectionData from "./sectionData";
 
+//action creators
+import { CHANGE_LOVEDBUTTONPRESSED } from "./actions";
+
 //reducer van de favorieten knop
 export const lovedButtonPressed = (state = false, action) => {
     switch (action.type) {
-        case "PRESSING_LOVED_BUTTON":
+        case CHANGE_LOVEDBUTTONPRESSED:
             return action.payload;
         default:
             return state;
