@@ -1,3 +1,7 @@
+//React
+import React from 'react';
+
+//style
 import "./Text.css";
 
 const Text = ({description}) => {

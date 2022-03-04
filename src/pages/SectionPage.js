@@ -1,7 +1,12 @@
+//React
+import React from 'react';
+
+//componenten
 import SectionCard from "../SectionCard";
-import { useParams } from "react-router-dom";
-import sections from "../SectionData";
+import sectionData from "../sectionData";
 import Text from "../Text";
+
+//helper functies
 import { scrollIntoWindow } from "../helperFunctions";
 
 const SectionPage = (props) => {
@@ -10,7 +15,7 @@ const SectionPage = (props) => {
   
     let textToBeRendered = "";
 
-    let externalDataSection = sections.filter(section => {
+    let externalDataSection = sectionData.filter(section => {
         return section.id === sectionId;
     })
 

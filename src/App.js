@@ -1,6 +1,9 @@
-//react
-import React from "react";
+//React
+import React, { useEffect } from "react";
 import { Route, Switch } from "react-router-dom";
+
+//React-Redux
+import { connect } from "react-redux";
 
 //pagina's
 import MainPage from "./pages/MainPage";
@@ -9,23 +12,22 @@ import SectionPage from "./pages/SectionPage";
 
 //componenten
 import MediaSection from "./MediaSection";
+import FilterContext from "./FilterContext";
 
 //helper functies
-import { scrollIntoWindow, authenticate } from "./helperFunctions";
+import { scrollIntoWindow } from "./helperFunctions";
 
 //data
-import sections from "./SectionData";
+import sectionData from "./sectionData";
 
 //styling
 import "./App.css";
 
-class App extends React.Component {
-    state = { sections: "", lovedButtonPressed: false, loggedIn: false };
+const App = (props) => { 
 
-    filteredLoved = (state) => {
-        this.setState({ lovedButtonPressed: state });
-        if (state === false) { this.onSearch(); return }
-        let filteredSections = sections.filter(section => {
+    const filteredLoved = () => {
+        if (!props.lovedButtonPressed === false) { onSearch(); return }
+        let filteredSections = sectionData.filter(section => {
             return section.favorite === true;
         }).map(section => {
             return (
@@ -42,16 +44,11 @@ class App extends React.Component {
                 />
             );
         });
-
-        this.setState({ sections: filteredSections })
+        props.updateSections(filteredSections);
     }
 
-    onLogin = (username, password) => {
-        this.setState({ loggedIn: authenticate(username, password) });
-    }
-
-    onSearch = (searchTerm = "") => {
-        let filteredSections = sections.filter(section => {
+    const onSearch = (searchTerm = "") => {
+        let filteredSections = sectionData.filter(section => {
             return section.headerText.toLowerCase().search(searchTerm.toLowerCase()) !== -1;
         }).map(section => {
             return (
@@ -68,45 +65,57 @@ class App extends React.Component {
                 />
             );
         });
-        this.setState({ sections: filteredSections });
+        props.updateSections(filteredSections);
     }
 
-    componentDidMount() {
-        this.onSearch();
-    }
+    useEffect(() => {
+        onSearch();
+    }, [])
 
-    componentDidUpdate() {
+    useEffect(() => {
         scrollIntoWindow();
-    }
+    })
 
-    render() {
-        let main = <LoginPage
-            heading="MyFlix Login"
-            firstLabel="Gebruikersnaam"
-            secondLabel="Wachtwoord"
-            onLogin={this.onLogin}
+    let main = <LoginPage
+        heading="MyFlix Login"
+        firstLabel="Gebruikersnaam"
+        secondLabel="Wachtwoord"
+    />
 
+    if (props.loggedIn === true) {
+        main = <MainPage
+            filteredLoved={filteredLoved}            
+            name="Rinse"
+            onSearch={onSearch}
+            sections={props.sections}
+            searchBarPlaceholder="Probeer Forest of Beach"            
         />
-
-        if (this.state.loggedIn === true) {
-            main = <MainPage
-                filteredLoved={this.filteredLoved}
-                lovedButtonPressed={this.state.lovedButtonPressed}
-                name="Rinse"
-                onSearch={this.onSearch}
-                sections={this.state.sections}
-                searchBarPlaceholder="Probeer Forest of Beach"
-            />
-        }
-        return (
+    }
+    return (
+        <FilterContext.Provider value={props.filter}>
             <Switch>
-                <Route path="/sections/:sectionId" component={SectionPage}/>
+                <Route path="/sections/:sectionId" component={SectionPage} />
                 <Route path="/">
                     {main}
                 </Route>
             </Switch>
-        );
+        </FilterContext.Provider>
+    );
+}
+
+export const mapStateToProps = (state) => {
+    return {
+        lovedButtonPressed: state.lovedButtonPressed,
+        loggedIn: state.loggedIn,
+        sections: state.sections,
+        filter: state.filterContext
     }
 }
 
-export default App;
+export const mapDispatchToProps = (dispatch) => {
+    return {
+        updateSections: (filteredSections) => { dispatch({ type: "SECTIONS", payload: filteredSections }) }
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);

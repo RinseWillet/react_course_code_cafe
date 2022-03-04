@@ -1,35 +1,31 @@
 //React
-import React, {useContext} from 'react';
+import React, {useContext} from "react";
+import { Link } from "react-router-dom";
 
 //componenten
-import FilterContext from './FilterContext';
-import MediaCardWithLink from './MediaCardWithLink';
+import FilterContext from "./FilterContext";
 
-//style
-import "./MediaCard.css";
+const MediaCardWithLink = (props) => {
 
-const MediaCard = (props) => {
+    const filter = useContext(FilterContext);
 
-    const filter = useContext(FilterContext)
-   
-        if (props.link) {
-            return (
-               <MediaCardWithLink link={props.link} pictures={props.pictures} customSizes={props.customSizes}/>
-            );
-        }
-        return (
+        return (           
             <li className="mediaSection__listItem">
+                <Link to={props.link}>
                 <figure>
                     <img
                         srcSet={props.pictures + "/jpg/640.jpg 640w," + props.pictures + "/jpg/1280.jpg 1280w," + props.pictures + "/jpg/1920.jpg 1920w"}
                         sizes={props.customSizes || "calc(100vw/12 * 3), (max-width: 75rem) calc(100vw/12 * 4), (max-width: 46.875rem) calc(100vw/12 * 6)"}
                         src={props.pictures + "/jpg/640.jpg"}
-                        alt={props.alt || "placeholder"} 
+                        alt={props.alt || "placeholder"}
                         data-filter={filter}
-                        />
+                    />
                 </figure>
+                </Link>
             </li>
-        );    
+           
+        );
+    
 }
 
-export default MediaCard;
+export default MediaCardWithLink;
