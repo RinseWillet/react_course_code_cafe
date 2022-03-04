@@ -2,10 +2,11 @@
 import React, {useContext} from 'react';
 
 //React redux
-import { connect } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
 //componenten
 import FilterContext from './FilterContext';
+import { changeLovedButtonPressed } from './actions';
 
 //style
 import "./LovedButton.css"
@@ -14,25 +15,17 @@ const LovedButton = (props) => {
 
     const filter = useContext(FilterContext);
 
+    //useSelector lijkt op mapStateToProps, maar is voor 1 enkele state
+    const lovedButtonPressed = useSelector( (state) => state.lovedButtonPressed);
+    //useDispatch lijkt op mapDispatchToProps - let op: het object met type en payload geef je mee op moment van aanroepen!
+    const dispatchLovedButtonPressed = useDispatch();
+
     const press = (event) => {
-        props.changeLovedButtonPressed(props.lovedButtonPressed)
+        dispatchLovedButtonPressed(changeLovedButtonPressed(!lovedButtonPressed))
         props.filteredLoved();
     }
 
     return <button data-filter={filter} onClick={press} className="lovedButton" data-pressed={props.lovedButtonPressed}></button>
-
 }
 
-export const mapStateToProps = (state) => {
-    return {
-        lovedButtonPressed: state.lovedButtonPressed
-    }
-}
-
-export const mapDispatchToProps = (dispatch) => {
-    return {
-        changeLovedButtonPressed: (lovedButtonPressed) => dispatch({type: "PRESSING_LOVED_BUTTON", payload: !lovedButtonPressed})
-    }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps) (LovedButton);
+export default LovedButton;
