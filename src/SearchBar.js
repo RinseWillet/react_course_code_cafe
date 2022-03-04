@@ -1,41 +1,47 @@
 //React
-import React from "react";
+import React, {useState} from "react";
+
+//React-Redux
+import { connect } from "react-redux";
 
 //style
 import "./SearchBar.css";
 import "./Animations.css";
 
-class SearchBar extends React.Component {
+const SearchBar = (props) => {
 
-    state = {searchTerm: ""};
+    const [searchTerm, setSearchTerm] = useState("");
 
-    onChange = (event) => {
-        //de state wordt aangepast op basis van wat er in de zoekbalk als event binnenkomt
-        this.setState({searchTerm: event.target.value});
+    const onChange = (event) => {
+        //de searchTerm wordt aangepast op basis van wat er in de zoekbalk als event binnenkomt
+        setSearchTerm(event.target.value);
     }
 
-    onSubmit = (event) => {
+    const onSubmit = (event) => {
         event.preventDefault();
-        this.props.onSearch(this.state.searchTerm);        
+        props.onSearch(searchTerm);        
     }
-
-    render() {
+ 
         return (
-            <section data-lovedbuttonpressed={this.props.lovedbuttonpressed} className="searchSection a-comeUp">
-                <form onSubmit={this.onSubmit}>
+            <section data-lovedbuttonpressed={props.lovedButtonPressed} className="searchSection a-comeUp">
+                <form onSubmit={onSubmit}>
                     <label htmlFor="searchBar" className="searchSection__label" >
                         Hallo
                         <span className="searchSection__labelName">
-                        {" " + this.props.name + ", " || " "}
+                        {" " + props.name + ", " || " "}
                         </span>
                         zoek je iets?
                     </label>                  
-                    <input placeholder={this.props.searchBarPlaceholder || "Zoek hier je sectie"} className="searchSection__searchBar" value={this.state.searchTerm} onChange={this.onChange} type="text" id="searchBar" />
-                    <span className="searchSection__searchLogo" onClick={this.onSubmit}></span>
+                    <input placeholder={props.searchBarPlaceholder || "Zoek hier je sectie"} className="searchSection__searchBar" value={searchTerm} onChange={onChange} type="text" id="searchBar" />                    
                 </form>
             </section>
-        );
+        );    
+}
+
+export const mapStateToProps = (state) => {
+    return {
+        lovedButtonPressed: state.lovedButtonPressed
     }
 }
 
-export default SearchBar;
+export default connect(mapStateToProps, {})(SearchBar);

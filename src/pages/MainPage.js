@@ -6,12 +6,12 @@ import GrayScaleButton from "../GrayScaleButton";
 import LovedButton from "../LovedButton";
 import SearchBar from "../SearchBar";
 
-const MainPage = ({ filteredLoved, lovedButtonPressed, onSearch, name, sections, searchBarPlaceholder, onGrayScaleButtonClicked }) => {
+const MainPage = ({ onSearch, name, sections, searchBarPlaceholder, filteredLoved }) => {
     return (
         <main>
             <GrayScaleButton/>
-            <LovedButton filteredLoved={filteredLoved} />
-            <SearchBar searchBarPlaceholder={searchBarPlaceholder} lovedButtonPressed={lovedButtonPressed} name={name} onSearch={onSearch} />
+            <LovedButton filteredLoved = {filteredLoved}/>
+            <SearchBar searchBarPlaceholder={searchBarPlaceholder} name={name} onSearch={onSearch} />
             {sections}
         </main>
     );

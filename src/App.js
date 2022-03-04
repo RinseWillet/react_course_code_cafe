@@ -1,9 +1,9 @@
 //React
-import React from "react";
+import React, { useEffect } from "react";
 import { Route, Switch } from "react-router-dom";
 
 //React-Redux
-import {connect} from "react-redux";
+import { connect } from "react-redux";
 
 //pagina's
 import MainPage from "./pages/MainPage";
@@ -23,11 +23,10 @@ import sectionData from "./sectionData";
 //styling
 import "./App.css";
 
-class App extends React.Component {
-    state = { filter: "" };
+const App = (props) => { 
 
-    filteredLoved = () => {
-        if (!this.props.lovedButtonPressed === false) { this.onSearch(); return }
+    const filteredLoved = () => {
+        if (!props.lovedButtonPressed === false) { onSearch(); return }
         let filteredSections = sectionData.filter(section => {
             return section.favorite === true;
         }).map(section => {
@@ -45,10 +44,10 @@ class App extends React.Component {
                 />
             );
         });
-        this.props.updateSections(filteredSections);        
+        props.updateSections(filteredSections);
     }
 
-    onSearch = (searchTerm = "") => {
+    const onSearch = (searchTerm = "") => {
         let filteredSections = sectionData.filter(section => {
             return section.headerText.toLowerCase().search(searchTerm.toLowerCase()) !== -1;
         }).map(section => {
@@ -66,46 +65,42 @@ class App extends React.Component {
                 />
             );
         });
-        this.props.updateSections(filteredSections);  
+        props.updateSections(filteredSections);
     }
 
-    componentDidMount() {
-        this.onSearch();
-    }
+    useEffect(() => {
+        onSearch();
+    }, [])
 
-    componentDidUpdate() {
+    useEffect(() => {
         scrollIntoWindow();
-    }
+    })
 
-    render() {
-        let main = <LoginPage
-            heading="MyFlix Login"
-            firstLabel="Gebruikersnaam"
-            secondLabel="Wachtwoord"
+    let main = <LoginPage
+        heading="MyFlix Login"
+        firstLabel="Gebruikersnaam"
+        secondLabel="Wachtwoord"
+    />
+
+    if (props.loggedIn === true) {
+        main = <MainPage
+            filteredLoved={filteredLoved}            
+            name="Rinse"
+            onSearch={onSearch}
+            sections={props.sections}
+            searchBarPlaceholder="Probeer Forest of Beach"            
         />
-
-        if (this.props.loggedIn === true) {
-            main = <MainPage
-                filteredLoved={this.filteredLoved}
-                lovedButtonPressed={this.props.lovedButtonPressed}
-                name="Rinse"
-                onSearch={this.onSearch}
-                sections={this.props.sections}
-                searchBarPlaceholder="Probeer Forest of Beach"
-                onGrayScaleButtonClicked = { () => this.state.filter === "grayscale" ? this.setState({filter: ""}) : this.setState({filter: "grayscale"})}
-            />
-        }
-        return (
-            <FilterContext.Provider value={this.props.filter}>
-                <Switch>
-                    <Route path="/sections/:sectionId" component={SectionPage} />
-                    <Route path="/">
-                        {main}
-                    </Route>
-                </Switch>
-            </FilterContext.Provider>
-        );
     }
+    return (
+        <FilterContext.Provider value={props.filter}>
+            <Switch>
+                <Route path="/sections/:sectionId" component={SectionPage} />
+                <Route path="/">
+                    {main}
+                </Route>
+            </Switch>
+        </FilterContext.Provider>
+    );
 }
 
 export const mapStateToProps = (state) => {
@@ -119,7 +114,7 @@ export const mapStateToProps = (state) => {
 
 export const mapDispatchToProps = (dispatch) => {
     return {
-        updateSections: (filteredSections) => { dispatch({type: "SECTIONS", payload: filteredSections}) }
+        updateSections: (filteredSections) => { dispatch({ type: "SECTIONS", payload: filteredSections }) }
     }
 }
 
